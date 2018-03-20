@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import { GetVenues } from './components/GetVenues';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
+import { Events } from './components/Events';
 
 export default class App extends Component {
     displayName = App.name
@@ -20,6 +21,8 @@ export default class App extends Component {
                 <Route path='/getvenues' component={GetVenues} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
+                <Route path='/Events' component={Events} />
+
             </Layout>
         );
     }

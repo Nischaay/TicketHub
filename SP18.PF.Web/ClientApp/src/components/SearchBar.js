@@ -26,7 +26,7 @@ export class SearchBar extends Component {
     renderSearchBar() {
         return (
             <div>
-                <FormGroup controlId="searchValue" bsSize="large">
+                <FormGroup controlId="searchValue">
                     <FormControl
                         value={this.state.searchValue}
                         type={this.props.type}
