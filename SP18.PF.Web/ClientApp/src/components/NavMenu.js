@@ -48,6 +48,11 @@ export class NavMenu extends Component {
                             <Glyphicon glyph='th-list' /> Register
               </NavItem>
                     </LinkContainer>
+                    <LinkContainer to={'/gettours'}>
+                        <NavItem>
+                            <Glyphicon glyph='th-list' /> Tours
+              </NavItem>
+                    </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
