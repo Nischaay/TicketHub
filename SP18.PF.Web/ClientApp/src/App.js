@@ -5,18 +5,22 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { GetVenues } from './components/GetVenues';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
 
 export default class App extends Component {
-  displayName = App.name
+    displayName = App.name
 
-  render() {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetchdata' component={FetchData} />
-        <Route path='/getvenues' component={GetVenues} />
-      </Layout>
-    );
-  }
+    render() {
+        return (
+            <Layout>
+                <Route exact path='/' component={Home} />
+                <Route path='/counter' component={Counter} />
+                <Route path='/fetchdata' component={FetchData} />
+                <Route path='/getvenues' component={GetVenues} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+            </Layout>
+        );
+    }
 }
