@@ -9,6 +9,7 @@ export class Login extends Component {
         this.state = {
             email: "",
             password: "",
+            remeberMe: true,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +26,7 @@ export class Login extends Component {
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
+                remeberMe : this.state.remeberMe,
             })
         })
             .then(response => console.log(response))
@@ -52,6 +54,7 @@ export class Login extends Component {
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>
+                    <h2 class="form-signin-heading">Sign In</h2>
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>
                         <FormControl
@@ -71,6 +74,17 @@ export class Login extends Component {
 
                         />
                     </FormGroup>
+                    <form>
+                        <label>
+                            Is going:
+                       <input
+                                name="Remember me"
+                                type="checkbox"
+                                checked = "false"
+                                value={this.state.remeberMe}
+                                onChange={this.handleChange} />
+                        </label>
+                        </form>
                     <Button
                         block
                         bsSize="large"

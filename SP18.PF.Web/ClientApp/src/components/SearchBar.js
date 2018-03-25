@@ -7,7 +7,7 @@ export class SearchBar extends Component {
         this.state = {
             searchValue: "",
             loading: true,
-            type: 'email'
+            type: 'string'
         };
         this.search = this.search.bind(this);
         this.handleChange = this.handleChange.bind(this);

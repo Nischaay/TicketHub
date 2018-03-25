@@ -52,7 +52,7 @@ export class NavMenu extends Component {
                         <NavItem>
                             <Glyphicon glyph='th-list' /> Tours
               </NavItem>
-                    </LinkContainer>
+                        </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
