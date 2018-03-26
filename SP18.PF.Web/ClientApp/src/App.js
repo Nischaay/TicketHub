@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { GetVenues } from './components/GetVenues';
-import { Login } from './components/Login';
+import { Login, Authentication } from './components/Login';
 import { Register } from './components/Register';
 import { Events } from './components/Events';
 import { GetTours } from './components/GetTours';
+import { UserDashboard } from './components/UserDashboard';
+
 
 export default class App extends Component {
     displayName = App.name
@@ -24,9 +26,23 @@ export default class App extends Component {
                 <Route path='/register' component={Register} />
                 <Route path='/gettours' component={GetTours} />
                 <Route path='/Events' component={Events} />
-                
-
+                <PrivateRoute path="/UserDashboard" component={UserDashboard}/>
             </Layout>
         );
     }
 }
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                Authentication.isAuthenticated === true ? (
+                    <Component {...props} />
+                ) : (
+                        <Redirect
+                            to={{ pathname: "/login", state: { from: props.location } }}
+                        />
+                    )}
+        />);
+};
