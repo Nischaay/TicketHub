@@ -2,11 +2,9 @@
 import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import './NavMenu.css';
-
+import './NavMenu.css';               
 export class NavMenu extends Component {
   displayName = NavMenu.name
-
   render() {
     return (
       <Navbar inverse fixedTop fluid collapseOnSelect>
@@ -23,16 +21,41 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Home
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
-              <NavItem>
-                <Glyphicon glyph='education' /> Counter
+            <LinkContainer to={'/getvenues'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Venues
               </NavItem>
-            </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
+                    </LinkContainer>
+                    <LinkContainer to={'/login'}>
+                        <NavItem>
+                            <Glyphicon glyph='log-in' /> Login
               </NavItem>
-            </LinkContainer>
+                    </LinkContainer>
+                    <LinkContainer to={'/register'}>
+                        <NavItem>
+                            <Glyphicon glyph='plus' /> Register
+              </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to={'/events'}>
+                        <NavItem>
+                            <Glyphicon glyph='th-list' /> Events
+              </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to={'/gettours'}>
+                        <NavItem>
+                            <Glyphicon glyph='th-list' /> Tours
+              </NavItem>
+                    </LinkContainer>
+                <LinkContainer to={'/logout'}>
+                    <NavItem>
+                        <Glyphicon glyph='off' /> Logout
+              </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to={'/UserTickets'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Tickets
+              </NavItem>
+                </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
