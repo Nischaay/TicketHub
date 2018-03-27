@@ -19,30 +19,28 @@ export default class App extends Component {
         return (
             <Layout>
                 <Route exact path='/' component={Home} />
-                <Route path='/counter' component={Counter} />
-                <Route path='/fetchdata' component={FetchData} />
                 <Route path='/getvenues' component={GetVenues} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/gettours' component={GetTours} />
                 <Route path='/Events' component={Events} />
-                <PrivateRoute path="/UserDashboard" component={UserDashboard}/>
+                
             </Layout>
         );
     }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    return (
-        <Route
-            {...rest}
-            render={props =>
-                Authentication.isAuthenticated === true ? (
-                    <Component {...props} />
-                ) : (
-                        <Redirect
-                            to={{ pathname: "/login", state: { from: props.location } }}
-                        />
-                    )}
-        />);
-};
+//const PrivateRoute = ({ component: Component, ...rest }) => {
+//    return (
+//        <Route
+//            {...rest}
+//            render={props =>
+//                Authentication.isAuthenticated === true ? (
+//                    <Component {...props} />
+//                ) : (
+//                        <Redirect
+//                            to={{ pathname: "/login", state: { from: props.location } }}
+//                        />
+//                    )}
+//        />);
+//};
