@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { SearchBar } from './SearchBar';
+import {Glyphicon} from 'react-bootstrap';
 
 export class GetVenues extends Component {
     displayName = GetVenues.name
