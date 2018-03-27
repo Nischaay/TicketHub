@@ -9,9 +9,10 @@ export class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            remeberMe: true,
+            rememberMe: true,
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeRadio = this.handleChangeRadio.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -19,6 +20,7 @@ export class Login extends Component {
         console.log('submit called');
         fetch('api/users/login', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ export class Login extends Component {
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                remeberMe : this.state.remeberMe,
+                rememberMe : this.state.rememberMe,
             })
         })
             .then(response => console.log(response))
@@ -48,13 +50,19 @@ export class Login extends Component {
         this.setState({
             [event.target.id]: event.target.value
         });
+        
     }
 
+    handleChangeRadio = event => {
+        this.setState({ 
+            [event.currentTarget.id]: event.currentTarget.checked
+        });
+    }
     render() {
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>
-                    <h2 class="form-signin-heading">Sign In</h2>
+                    <h2 className="form-signin-heading">Sign In</h2>
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>
                         <FormControl
@@ -74,17 +82,18 @@ export class Login extends Component {
 
                         />
                     </FormGroup>
-                    <form>
-                        <label>
-                            Is going:
-                       <input
-                                name="Remember me"
-                                type="checkbox"
-                                checked = "false"
-                                value={this.state.remeberMe}
-                                onChange={this.handleChange} />
-                        </label>
-                        </form>
+                    
+                    <label>
+                        Remember me:
+                    </label>
+                    <input
+                            name="rememberMe"
+                            type="checkbox"
+                            id="rememberMe"
+                            checked={this.state.rememberMe}
+                            onChange={this.handleChangeRadio} />
+                        
+                       
                     <Button
                         block
                         bsSize="large"

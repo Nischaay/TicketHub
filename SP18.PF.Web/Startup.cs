@@ -51,6 +51,8 @@ namespace SP18.PF.Web
                 });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddCors();
+
             services.AddMvc()
                 // we are using "fluent validation" to make validators easy and automatically applied server and client side (rules in "*Validator" classes - e.g. LoginViewModelValidator)
                 // see: https://github.com/JeremySkinner/FluentValidation
@@ -110,6 +112,7 @@ namespace SP18.PF.Web
             });
 
             app.UseSpaStaticFiles();
+
 
             app.UseMvc(routes =>
             {

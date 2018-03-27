@@ -1,7 +1,19 @@
 ﻿import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel, PageHeader } from "react-bootstrap";
 import { log } from 'util';
 
+const styles = {
+    form: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '48%'
+    },
+    pageHeader: {
+        textAlign: 'center'
+    }
+
+
+};
 export class Register extends Component {
     displayName = 'Register form'
     constructor(props) {
@@ -76,8 +88,11 @@ export class Register extends Component {
     render() {
         return (
             <div className="Register">
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="email" bsSize="large">
+                <PageHeader style={styles.pageHeader}>
+                    Registration
+                </PageHeader>;
+                <form onSubmit={this.handleSubmit} style={styles.form}>
+                    <FormGroup controlId="email" bsSize="small">
                         <ControlLabel>Email</ControlLabel>
                         <FormControl
                             autoFocus
@@ -87,7 +102,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
+                    <FormGroup controlId="password" bsSize="small">
                         <ControlLabel>Password</ControlLabel>
                         <FormControl
                             value={this.state.password}
@@ -96,7 +111,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="confirmPassword" bsSize="large">
+                    <FormGroup controlId="confirmPassword" bsSize="small">
                         <ControlLabel>Confirm Password</ControlLabel>
                         <FormControl
                             value={this.state.confirmPassword}
@@ -105,7 +120,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="addressLine1" bsSize="large">
+                    <FormGroup controlId="addressLine1" bsSize="small">
                         <ControlLabel>Address Line 1</ControlLabel>
                         <FormControl
                             value={this.state.addressLine1}
@@ -114,7 +129,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="addressLine2" bsSize="large">
+                    <FormGroup controlId="addressLine2" bsSize="small">
                         <ControlLabel>Address Line 2</ControlLabel>
                         <FormControl
                             value={this.state.addressLine2}
@@ -123,7 +138,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="state" bsSize="large">
+                    <FormGroup controlId="state" bsSize="small">
                         <ControlLabel>State</ControlLabel>
                         <FormControl
                             value={this.state.state}
@@ -132,7 +147,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="city" bsSize="large">
+                    <FormGroup controlId="city" bsSize="small">
                         <ControlLabel>City</ControlLabel>
                         <FormControl
                             value={this.state.city}
@@ -141,7 +156,7 @@ export class Register extends Component {
 
                         />
                     </FormGroup>
-                    <FormGroup controlId="zipCode" bsSize="large">
+                    <FormGroup controlId="zipCode" bsSize="small">
                         <ControlLabel>ZipCode</ControlLabel>
                         <FormControl
                             value={this.state.zipCode}
@@ -152,7 +167,8 @@ export class Register extends Component {
                     </FormGroup>
                     <Button
                         block
-                        bsSize="large"
+                        bsSize="small"
+                        bsStyle="primary"
                         type="submit"
                     >
                         Register
