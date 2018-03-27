@@ -1,6 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { log } from 'util';
+import { Redirect, Route } from 'react-router-dom';
+
+export const Authentication = {
+    isAuthenticated: false,
+}
 
 export class Login extends Component {
     displayName = 'Login Form'
@@ -10,6 +15,7 @@ export class Login extends Component {
             email: "",
             password: "",
             rememberMe: true,
+             redirect: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
@@ -31,10 +37,13 @@ export class Login extends Component {
                 rememberMe : this.state.rememberMe,
             })
         })
-            .then(response => console.log(response))
-            .catch((error) => {
-                console.error('error while login', error);
-            });
+            .then(response => response.json())
+            .then(data => {
+                if (data.id != null) {
+                    this.setState({ redirect: true })
+                }
+            })
+        
     }
 
     validateForm() {
@@ -59,51 +68,43 @@ export class Login extends Component {
         });
     }
     render() {
-        return (
-            <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                    <h2 className="form-signin-heading">Sign In</h2>
-                    <FormGroup controlId="email" bsSize="large">
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl
-                            autoFocus
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
+        if (this.state.redirect) {
+            Authentication.isAuthenticated = true;
+            return <Redirect to="/Home" />
+        } else {
+            return (
+                <div className="Login">
+                    <form onSubmit={this.handleSubmit}>
+                        <FormGroup controlId="email" bsSize="large">
+                            <ControlLabel>Email</ControlLabel>
+                            <FormControl
+                                autoFocus
+                                type="email"
+                                value={this.state.email}
+                                onChange={this.handleChange}
 
-                        />
-                    </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl
-                            value={this.state.password}
-                            type="password"
-                            onChange={this.handleChange}
+                            />
+                        </FormGroup>
+                        <FormGroup controlId="password" bsSize="large">
+                            <ControlLabel>Password</ControlLabel>
+                            <FormControl
+                                value={this.state.password}
+                                type="password"
+                                onChange={this.handleChange}
 
-                        />
-                    </FormGroup>
-                    
-                    <label>
-                        Remember me:
-                    </label>
-                    <input
-                            name="rememberMe"
-                            type="checkbox"
-                            id="rememberMe"
-                            checked={this.state.rememberMe}
-                            onChange={this.handleChangeRadio} />
-                        
-                       
-                    <Button
-                        block
-                        bsSize="large"
-                        type="submit"
-                    >
-                        Login
+                            />
+                        </FormGroup>
+                        <Button
+                            block
+                            bsSize="large"
+                            type="submit"
+                        >
+                            Login
               </Button>
-                </form>
-            </div>
-        );
+                    </form>
+                </div>
+            );
+        }
     }
 
 
