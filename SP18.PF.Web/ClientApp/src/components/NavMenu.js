@@ -40,7 +40,12 @@ export class NavMenu extends Component {
                         <NavItem>
                             <Glyphicon glyph='th-list' /> Tours
               </NavItem>
-                        </LinkContainer>
+                    </LinkContainer>
+                <LinkContainer to={'/logout'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Logout
+              </NavItem>
+                </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

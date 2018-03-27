@@ -10,6 +10,7 @@ import { Register } from './components/Register';
 import { Events } from './components/Events';
 import { GetTours } from './components/GetTours';
 import { UserDashboard } from './components/UserDashboard';
+import {Logout} from './components/Logout'
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
                 <Route path='/register' component={Register} />
                 <Route path='/gettours' component={GetTours} />
                 <Route path='/Events' component={Events} />
+                <Route path='/Logout' component={Logout} />
                 
             </Layout>
         );
