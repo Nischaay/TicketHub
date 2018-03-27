@@ -1,11 +1,15 @@
 ﻿import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { log } from 'util';
+import { Redirect, Route } from 'react-router-dom';
+import { Authentication } from './Login';
+
 
 export class Logout extends Component {
     displayName = 'Logout'
     constructor(props) {
         super(props);
+        this.state = { redirect: false };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     LogOut() {
@@ -17,9 +21,8 @@ export class Logout extends Component {
                 'Content-type': 'application/json',
             },
         })
-            .then(response => console.log(response))
-            .catch((error) => {
-                console.log('Error' + error);
+            .then(response =>  {
+                this.setState({ redirect: true });
             });
     }
 
@@ -29,16 +32,21 @@ export class Logout extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <Button onClick={this.handleSubmit}
-                    block
-                    bsSize="large"
-                    type="submit"
-                >
-                    Login
+        if (this.state.redirect) {
+            Authentication.isAuthenticated = false;
+            return <Redirect to="/" />;
+        } else {
+            return (
+                <div>
+                    <Button onClick={this.handleSubmit}
+                        block
+                        bsSize="large"
+                        type="submit"
+                    >
+                        Logout
               </Button>
-            </div>
-        )
+                </div>
+            )
+        }
     }
 }

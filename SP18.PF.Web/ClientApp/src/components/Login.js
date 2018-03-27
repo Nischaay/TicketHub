@@ -1,7 +1,20 @@
 ﻿import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel, PageHeader } from "react-bootstrap";
 import { log } from 'util';
 import { Redirect, Route } from 'react-router-dom';
+
+const styles = {
+    form: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '48%'
+    },
+    pageHeader: {
+        textAlign: 'center'
+    }
+
+
+};
 
 export const Authentication = {
     isAuthenticated: false,
@@ -34,7 +47,7 @@ export class Login extends Component {
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                rememberMe : this.state.rememberMe,
+                rememberMe: this.state.rememberMe,
             })
         })
             .then(response => response.json())
@@ -70,12 +83,15 @@ export class Login extends Component {
     render() {
         if (this.state.redirect) {
             Authentication.isAuthenticated = true;
-            return <Redirect to="/Home" />
+            return <Redirect to="/" />
         } else {
             return (
                 <div className="Login">
-                    <form onSubmit={this.handleSubmit}>
-                        <FormGroup controlId="email" bsSize="large">
+                    <PageHeader style={styles.pageHeader}>
+                        Login
+                </PageHeader>;
+                    <form onSubmit={this.handleSubmit} style={styles.form}>
+                        <FormGroup controlId="email" bsSize="small">
                             <ControlLabel>Email</ControlLabel>
                             <FormControl
                                 autoFocus
@@ -85,7 +101,7 @@ export class Login extends Component {
 
                             />
                         </FormGroup>
-                        <FormGroup controlId="password" bsSize="large">
+                        <FormGroup controlId="password" bsSize="small">
                             <ControlLabel>Password</ControlLabel>
                             <FormControl
                                 value={this.state.password}
