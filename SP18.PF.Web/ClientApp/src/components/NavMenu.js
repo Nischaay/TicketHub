@@ -89,11 +89,6 @@ export class NavMenu extends Component {
                                 <Glyphicon glyph='plus' /> Register
               </NavItem>
                         </LinkContainer>
-                        <LinkContainer to={'/events'}>
-                            <NavItem>
-                                <Glyphicon glyph='th-list' /> Events
-              </NavItem>
-                        </LinkContainer>
                         <LinkContainer to={'/gettours'}>
                             <NavItem>
                                 <Glyphicon glyph='th-list' /> Tours
