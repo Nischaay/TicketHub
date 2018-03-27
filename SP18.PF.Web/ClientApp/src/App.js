@@ -23,6 +23,7 @@ export default class App extends Component {
                 <Route path='/getvenues' component={GetVenues} />
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
+                <Route path='/events' component={Events} />
                 <Route path='/gettours' component={GetTours} />
                 <Route path='/Events' component={Events} />
                 <Route path='/Logout' component={Logout} />
