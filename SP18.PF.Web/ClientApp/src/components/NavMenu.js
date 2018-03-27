@@ -28,12 +28,12 @@ export class NavMenu extends Component {
                     </LinkContainer>
                     <LinkContainer to={'/login'}>
                         <NavItem>
-                            <Glyphicon glyph='th-list' /> Login
+                            <Glyphicon glyph='log-in' /> Login
               </NavItem>
                     </LinkContainer>
                     <LinkContainer to={'/register'}>
                         <NavItem>
-                            <Glyphicon glyph='th-list' /> Register
+                            <Glyphicon glyph='plus' /> Register
               </NavItem>
                     </LinkContainer>
                     <LinkContainer to={'/events'}>
@@ -48,7 +48,12 @@ export class NavMenu extends Component {
                     </LinkContainer>
                 <LinkContainer to={'/logout'}>
                     <NavItem>
-                        <Glyphicon glyph='th-list' /> Logout
+                        <Glyphicon glyph='off' /> Logout
+              </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to={'/UserTickets'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Tickets
               </NavItem>
                 </LinkContainer>
           </Nav>
