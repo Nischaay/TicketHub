@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using SP18.PF.G09.Xamarin.Views;
 using Xamarin.Forms;
 
 namespace SP18.PF.G09.Xamarin
@@ -13,7 +14,14 @@ namespace SP18.PF.G09.Xamarin
 		{
 			InitializeComponent();
 
-			MainPage = new SP18.PF.G09.Xamarin.MainPage();
+            //MainPage = new SP18.PF.G09.Xamarin.Home();
+            MainPage = new TabbedPage {
+            Children = {
+                    new MainPage(),
+                    new Login(),
+                    new Registration()
+                }
+                };
 		}
 
 		protected override void OnStart ()

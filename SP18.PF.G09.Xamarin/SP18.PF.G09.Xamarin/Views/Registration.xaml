@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.Registration"
+             Title="Register">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="20"
+                         VerticalOptions="Center">
+            <Entry Placeholder="Email"
+                       Text="{Binding Username}"/>
+            <Entry Placeholder="Password"
+                       Text="{Binding Password}"
+                       IsPassword="true"/>
+            <Entry Placeholder="Confirm Password"
+                       IsPassword="True"/>
+            <Entry Placeholder="Address Line 1"
+                       Text="{Binding AddressLine1}"/>
+            <Entry Placeholder="AddressLine2"
+                       Text="{Binding AddressLine2}"/>
+            <Entry Placeholder="City"
+                       Text="{Binding City}"/>
+            <Entry Placeholder="State"
+                       Text="{Binding State}"/>
+            <Entry Placeholder="Zip"
+                       Text="{Binding Zip}"/>
+            <Button Text="Register" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding RegisterCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
