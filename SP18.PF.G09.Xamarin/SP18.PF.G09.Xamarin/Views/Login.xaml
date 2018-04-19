@@ -7,14 +7,20 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="20"
                          VerticalOptions="Center">
-            <Entry Placeholder="Username"
-                       Text="{Binding Username}"/>
-            <Entry Placeholder="Password"
-                       Text="{Binding Password}"
-                       IsPassword="true"/>
-            <Button Text="Login" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding LoginCommand}"/>
+            <Label Text="Email"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="EntryEmail"/>
+            <Label Text="Password"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="EntryPassword"
+               IsPassword="True"/>
+            <Button Text="Login"
+                TextColor="White"
+                BackgroundColor="#22A7F0"
+                x:Name="ButtonLogin"
+                Clicked="ButtonLogin_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
