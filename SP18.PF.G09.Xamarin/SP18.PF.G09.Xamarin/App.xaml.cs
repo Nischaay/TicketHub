@@ -16,7 +16,7 @@ namespace SP18.PF.G09.Xamarin
 
             //MainPage = new SP18.PF.G09.Xamarin.Home();
             MainPage = new TabbedPage {
-            Children = {
+                Children = {
                     new MainPage(),
                     new Login(),
                     new Registration()

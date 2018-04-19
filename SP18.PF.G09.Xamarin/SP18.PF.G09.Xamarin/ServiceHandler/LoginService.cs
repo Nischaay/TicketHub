@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using SP18.PF.Core.Features.Users;
 using SP18.PF.Core.Features.Venues;
 using SP18.PF.G09.Xamarin.RestApi;
+using SP18.PF.G09.Xamarin.ServiceHandler;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
@@ -30,16 +31,8 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
                 Email = email,
                 Password = password
             };
-            // var test = await _restClient.GetAll<Venue>(Resources.VenueGetAllUrl);
-            var result = await _restClient.Post<User>("users/login", loginModel);
+            var result = await _restClient.Post<User>(Resources.UserLogin, loginModel);
             return result;
-        }
-
-        //todo: move to new file
-        public static class Resources
-        {
-            public const string VenueGetAllUrl = "Venue";
-
         }
     }
 }

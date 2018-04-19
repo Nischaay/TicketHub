@@ -8,17 +8,17 @@ namespace SP18.PF.G09.Xamarin.RestApi
 {
     public interface IRestClient
     {
-         Task<bool> Post<T>(string url, T payload);
-         Task<List<TEntity>> GetAll<TEntity>(string url);
-         Task<bool> Delete<TEntity>(string url);
+        Task<bool> Post<T>(string url, T payload);
+        Task<List<TEntity>> GetAll<TEntity>(string url);
+        Task<bool> Delete<TEntity>(string url);
         Task<bool> Update<T>(string url, T payload);
     }
 
 
 
-    public class RestClient: IRestClient
+    public class RestClient : IRestClient
     {
-        //private const string MainWebServiceUrl = "http://localhost:59477/";
+        //private const string WebServiceUrl = "http://localhost:3000/";
         private const string WebServiceUrl = "https://sp18pfg09.azurewebsites.net/api/";
 
         public async Task<bool> Post<T>(string url, T payload)
@@ -38,7 +38,7 @@ namespace SP18.PF.G09.Xamarin.RestApi
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
             var result = await client.GetAsync(uri).ConfigureAwait(false);
-            var responseObject =  JsonConvert.DeserializeObject<List<TEntity>>(await result.Content.ReadAsStringAsync());
+            var responseObject = JsonConvert.DeserializeObject<List<TEntity>>(await result.Content.ReadAsStringAsync());
             return responseObject;
         }
 
