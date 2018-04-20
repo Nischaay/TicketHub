@@ -9,8 +9,6 @@ export class UserTickets extends Component {
         super(props);
         this.state = {
             tickets: [],
-            allTickets: [],
-            searchTickets: 0,
             loading: true
         };
         this.fetchAll();
@@ -18,7 +16,7 @@ export class UserTickets extends Component {
     }
 
     fetchAll() {
-        fetch('api/tickets', {
+        fetch('api/tickets/GetMyTickets', {
             credentials: 'include',
             headers: {
                 'Accept': 'application/json',
@@ -29,60 +27,43 @@ export class UserTickets extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({ tickets: data, loading: false });
-                this.setState({ allTickets: data, loading: false });
             });
-        this.searchTickets = this.searchTickets.bind(this);
     }
 
-    searchTickets(id) {
-        if (!id) {
-            this.setState({ tickets: this.state.allTickets, loading: false });
-        }
-        else {
-            fetch('api/tickets/' + id, {
-                credentials: 'include'
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('search ticket', data);
-                    const searchedTickets = this.state.allTickets.filter(x => x.id == data.id);
-                    this.setState({ tickets: searchedTickets, loading: false });
-                });
-        }
-    }
 
     static renderTicketsTable(tickets) {
         return (
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th> Id </th>
-                        <th>Purchase Price</th>
-                        <th>Event</th>
-                        <th>Capacity</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {tickets.map(ticket =>
-                        <tr key={ticket.id}>
-                            <td>{ticket.id}</td>
-                            <td>{ticket.purchasePrice}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            <div>
+                {tickets.map(event =>
+                    <div key={event.id} className="well row col-md-12">
+                        <div>
+                            <div>
+                                <h3> Tour: {event.event.tourName} </h3>
+                                <h3> Venue: {event.event.venueName} </h3>
+                                <hr />
+                                <h3> Event Start Date: {event.event.eventStart} </h3>
+                                <h3> Event End Date: {event.event.eventEnd} </h3>
+                                <h3> Ticket Price: ${event.event.ticketPrice} </h3>
+                                <br />
+                                <button className="btn pull-right btn-danger">Bought this Ticket at ${event.event.ticketPrice}</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         );
     }
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <div><h1 class="fa fa-refresh fa-spin fa-lg"></h1> Loading </div>
             : UserTickets.renderTicketsTable(this.state.tickets);
         return (
             <div>
-                <SearchBar onSearch={this.searchTickets} type="number" />
-                <h1>Tickets</h1>
+                <h1>Tickets Purchased</h1>
+                <hr/>
                 {contents}
             </div>
         );

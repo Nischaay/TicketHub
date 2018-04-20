@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { SearchBar } from './SearchBar';
 import { Glyphicon } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export class Events extends Component {
 
@@ -10,7 +11,7 @@ export class Events extends Component {
             events: [],
             allEvents: [],
             searchEvent: 0,
-            loading:true
+            loading: true
         };
         this.getAllEvents();
     }
@@ -43,46 +44,43 @@ export class Events extends Component {
 
     static getEventsTable(allEvents) {
         return (
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th> Id </th>
-                        <th>VenueName</th>
-                        <th>TourName</th>
-                        <th>TicketPrice</th>
-                        <th>StartDate</th>
-                        <th>EndDate</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {allEvents.map(event =>
-                        <tr key={event.id}>
-                            <td>{event.id}</td>
-                            <td>{event.venueName}</td>
-                            <td>{event.tourName}</td>
-                            <td>{event.ticketPrice}</td>
-                            <td>{event.eventStart}</td>
-                            <td>{event.eventEnd}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            <div>
+                {allEvents.map(event =>
+                    <div key={event.id} className="well row col-md-12">
+                        <div>
+                            <div>
+                                <h3> Tour: {event.tourName} </h3>
+                                <h3> Venue: {event.venueName} </h3>
+                                <hr />
+                                <h3> Event Start Date: {event.eventStart} </h3>
+                                <h3> Event End Date: {event.eventEnd} </h3>
+                                <h3> Ticket Price: ${event.ticketPrice} </h3>
+                                <br />
+                                <LinkContainer to={'purchaseTicket/' + event.id}>
+                                    <button className="btn pull-right btn-success"> Buy this ticket </button>
+                                </LinkContainer>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         );
     }
 
     render() {
-            let contents = this.state.loading
-                ? <p><em>Loading...</em></p>
-                : Events.getEventsTable(this.state.events);
-            return (
-                <div>
-                    <SearchBar onSearch={this.searchEvents} type="number" />
-                    <h1>Events</h1>
-                    {contents}
-                </div>
-            );
-        
+        let contents = this.state.loading
+            ? <h1 class="fa fa-refresh fa-spin fa-lg"></h1>
+            : Events.getEventsTable(this.state.events);
+        return (
+            <div>
+                <SearchBar onSearch={this.searchEvents} type="number" />
+                <h1>Events</h1>
+                {contents}
+            </div>
+        );
+
     }
-    
+
 }
