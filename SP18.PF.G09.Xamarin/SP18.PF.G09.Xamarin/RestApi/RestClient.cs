@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -18,7 +19,7 @@ namespace SP18.PF.G09.Xamarin.RestApi
 
     public class RestClient : IRestClient
     {
-        //private const string WebServiceUrl = "http://localhost:3000/";
+        //private const string WebServiceUrl = "http://localhost:5000/api/";
         private const string WebServiceUrl = "https://sp18pfg09.azurewebsites.net/api/";
 
         public async Task<bool> Post<T>(string url, T payload)
@@ -28,8 +29,15 @@ namespace SP18.PF.G09.Xamarin.RestApi
             var jsonString = JsonConvert.SerializeObject(payload);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/Json");
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-            var result = await client.PostAsync(uri, content).ConfigureAwait(false);
-            return result.IsSuccessStatusCode;
+            client.Timeout = new System.TimeSpan(0, 0, 0, 4, 0);
+            try
+            {
+                var result = await client.PostAsync(uri, content).ConfigureAwait(false);
+                return result.IsSuccessStatusCode;
+            }catch(Exception e)
+            {
+                return false;
+            }
         }
 
         public async Task<List<TEntity>> GetAll<TEntity>(string url)

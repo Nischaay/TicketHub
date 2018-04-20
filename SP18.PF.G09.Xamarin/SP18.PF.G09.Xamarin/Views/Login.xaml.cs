@@ -1,4 +1,5 @@
-﻿using SP18.PF.G09.Xamarin.ServiceHandler;
+﻿using SP18.PF.G09.Xamarin.Models;
+using SP18.PF.G09.Xamarin.ServiceHandler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,18 @@ namespace SP18.PF.G09.Xamarin.Views
         private async void ButtonLogin_Clicked(object sender, EventArgs e)
         {
             LoginService services = new LoginService();
-            var getLoginDetails = await services.CheckLoginIfExists(EntryEmail.Text, EntryPassword.Text);
+            var user = new UserModel
+            {
+                Email = string.IsNullOrEmpty(EntryEmail.Text) ? "admin@envoc.com" : EntryEmail.Text ,
+                Password = string.IsNullOrEmpty(EntryPassword.Text) ? "password" : EntryPassword.Text,
+                RememberMe = false
+            };
+            var getLoginDetails = await services.Login(user);
 
             if (getLoginDetails)
             {
                 await DisplayAlert("Login success", "You are login", "Okay", "Cancel");
+               // await Navigation.PushAsync(new Events());
             }
             else
             {
