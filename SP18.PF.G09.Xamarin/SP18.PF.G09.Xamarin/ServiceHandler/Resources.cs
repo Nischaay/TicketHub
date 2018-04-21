@@ -4,8 +4,9 @@
     {
         public const string UserLogin = "users/login";
         public const string RegisterUser = "users/register";
-        public const string GetAllVenues = "Venue";
+        public const string GetAllVenues = "Venues";
         public const string GetAllEvents = "events";
+        public const string GetAllTours = "tours";
 
     }
 }

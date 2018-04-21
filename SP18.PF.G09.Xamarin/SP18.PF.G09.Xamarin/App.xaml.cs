@@ -20,7 +20,8 @@ namespace SP18.PF.G09.Xamarin
             //    Children = {
             //        new MainPage(),
             //        new Login(),
-            //        new Registration()
+            //        new Registration(),
+            //        new ListTours()
             //    }
             //};
         }

@@ -23,6 +23,12 @@
                     IsToggled="False"
                    HorizontalOptions="Center"/>
 
+
+                <!--<SwitchCell
+                    Text="Remember Me?"
+                x:Name="rememeberME"
+                    On="False"/>-->
+
                 <Button Text="Login"
                 TextColor="White"
                 BackgroundColor="#22A7F0"
