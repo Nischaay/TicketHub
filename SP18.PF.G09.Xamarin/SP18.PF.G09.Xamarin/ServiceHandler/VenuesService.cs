@@ -21,7 +21,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<List<VenueModel>> GetAllVenues()
         {
-            var listvenues = await _restClient.GetAll<VenueModel>(Constants.GetAllVenues);
+            var listvenues = await _restClient.GetAll<VenueModel>(Constants.GetAllVenuesUrl);
             return listvenues;
         }
     }

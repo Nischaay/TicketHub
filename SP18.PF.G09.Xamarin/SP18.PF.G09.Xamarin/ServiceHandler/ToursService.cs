@@ -1,9 +1,7 @@
 ﻿using SP18.PF.G09.Xamarin.Models;
 using SP18.PF.G09.Xamarin.Resources;
 using SP18.PF.G09.Xamarin.RestApi;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
@@ -23,7 +21,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<List<ToursModel>> GetAllTours()
         {
-            var tourlist = await _restClient.GetAll<ToursModel>(Constants.GetAllTours);
+            var tourlist = await _restClient.GetAll<ToursModel>(Constants.GetAllToursUrl);
             return tourlist;
         }
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SP18.PF.G09.Xamarin.Models
+﻿namespace SP18.PF.G09.Xamarin.Models
 {
     public class ToursModel
     {

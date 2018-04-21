@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using SP18.PF.G09.Xamarin.Views;
 using Xamarin.Forms;
 
 namespace SP18.PF.G09.Xamarin
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
 		public App ()
 		{

@@ -23,7 +23,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
         {
             if (ValidateUserRegistration(registerModel))
             {
-                var result = await _restClient.Post<UserRegisterModel>(Constants.RegisterUser, registerModel);
+                var result = await _restClient.Post<UserRegisterModel>(Constants.RegisterUserUrl, registerModel);
                 return result;
             }
             return false;

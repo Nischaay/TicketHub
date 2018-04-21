@@ -3,8 +3,6 @@ using SP18.PF.G09.Xamarin.Resources;
 using SP18.PF.G09.Xamarin.ServiceHandler;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +29,7 @@ namespace SP18.PF.G09.Xamarin.RestApi
             HttpClient client = isSetCookie ? new HttpClient(handler) : new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
             client.Timeout = new System.TimeSpan(0, 0, 0, 5, 0);
-            client.BaseAddress = new Uri(Constants.WebServiceUrl);
+            client.BaseAddress = new Uri(Constants.WebServiceBaseUrl);
             return client;
         }
 
@@ -46,12 +44,6 @@ namespace SP18.PF.G09.Xamarin.RestApi
         {
             HttpClient client = PrepareClient();
             var content = PrepareContent(payload);
-            //HttpClient client = new HttpClient();
-            //var uri = $"{Constants.WebServiceUrl}{url}";
-            //var jsonString = JsonConvert.SerializeObject(payload);
-            //var content = new StringContent(jsonString, Encoding.UTF8, "application/Json");
-            //client.Timeout = new System.TimeSpan(0, 0, 0, 4, 0);
-            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
 
             try
             {
@@ -63,18 +55,13 @@ namespace SP18.PF.G09.Xamarin.RestApi
                 return false;
             }
         }
-                  
-
 
         public async Task<List<TEntity>> GetAll<TEntity>(string url)
-        {
-            //var uri = $"{Constants.WebServiceUrl}{url}";
-            //var client = new HttpClient();
-            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
+        {           
             var client = PrepareClient();
             try
             {
-                var result = await client.GetAsync(url);
+                var result = await client.GetAsync(url).ConfigureAwait(false);
                 var responseObject = JsonConvert.DeserializeObject<List<TEntity>>(await result.Content.ReadAsStringAsync());
                 return responseObject;
             }
@@ -84,35 +71,26 @@ namespace SP18.PF.G09.Xamarin.RestApi
             }
         }
 
-
         public async Task<TEntity> GetOne<TEntity>(string url)
         {
-            var uri = $"{Constants.WebServiceUrl}{url}";
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-            var result = await client.GetAsync(uri).ConfigureAwait(false);
+            var client = PrepareClient();
+            var result = await client.GetAsync(url).ConfigureAwait(false);
             var responseObject = JsonConvert.DeserializeObject<TEntity>(await result.Content.ReadAsStringAsync());
             return responseObject;
         }
 
-
         public async Task<bool> Delete<TEntity>(string url)
         {
-            var uri = $"{Constants.WebServiceUrl}{url}";
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-            var result = await client.DeleteAsync(uri).ConfigureAwait(false);
+            var client = PrepareClient();
+            var result = await client.DeleteAsync(url).ConfigureAwait(false);
             return result.IsSuccessStatusCode;
         }
 
         public async Task<bool> Update<T>(string url, T payload)
         {
-            var uri = $"{Constants.WebServiceUrl}{url}";
-            var client = new HttpClient();
-            var jsonString = JsonConvert.SerializeObject(payload);
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/Json");
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-            var result = await client.PutAsync(uri, content).ConfigureAwait(false);
+            var client = PrepareClient();
+            var content = PrepareContent(payload);
+            var result = await client.PutAsync(url, content).ConfigureAwait(false);
             return result.IsSuccessStatusCode;
         }
     }

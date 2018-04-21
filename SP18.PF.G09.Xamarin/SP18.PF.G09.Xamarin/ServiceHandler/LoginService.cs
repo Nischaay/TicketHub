@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using SP18.PF.Core.Features.Users;
-using SP18.PF.Core.Features.Venues;
+﻿using System.Threading.Tasks;
 using SP18.PF.G09.Xamarin.Models;
 using SP18.PF.G09.Xamarin.RestApi;
-using SP18.PF.G09.Xamarin.ServiceHandler;
 using SP18.PF.G09.Xamarin.Resources;
-using System.Net;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Linq;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
@@ -19,8 +9,6 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
     {
         private readonly IRestClient _restClient;
         private readonly CookieService _cookieService;
-
-
 
         public LoginService()
         {
@@ -35,30 +23,8 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<bool> Login(UserModel user)
         {
-            //HttpClientHandler handler = new HttpClientHandler
-            //{
-            //    CookieContainer = _cookieService.GetCookieContainer()
-            //};
-
-            //HttpClient client = new HttpClient(handler);
-            //var uri = $"{Constants.WebServiceUrl}{Constants.UserLogin}";
-
-            HttpClient client = _restClient.PrepareClient();
-            try
-            {
-                var content = _restClient.PrepareContent(user);
-                //var jsonString = JsonConvert.SerializeObject(user);
-                //var content = new StringContent(jsonString, Encoding.UTF8, "application/Json");
-                //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
-                //client.Timeout = new TimeSpan(0, 0, 0, 4, 0);
-                HttpResponseMessage result = await client.PostAsync(Constants.UserLogin, content).ConfigureAwait(false);
-                return result.IsSuccessStatusCode;
-            }
-
-            catch (Exception e)
-            {
-                return false;
-            }
+            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, user);
+            return result;
         }
 
         public async Task<bool> Login(UserRegisterModel registerModel)
@@ -69,7 +35,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
                 Password = registerModel.Password,
                 RememberMe = false,
             };
-            var result = await _restClient.Post<UserModel>(Constants.UserLogin, loginModel);
+            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, loginModel);
             return result;
         }
     }

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
@@ -21,7 +20,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
             return _cookieContainer;
         }
 
-        public Cookie GetCookie(string uri = Constants.WebServiceUrl)
+        public Cookie GetCookie(string uri = Constants.WebServiceBaseUrl)
         {
             Uri cookieUri = new Uri(uri);
             IEnumerable<Cookie> responseCookies = _cookieContainer.GetCookies(cookieUri).Cast<Cookie>();

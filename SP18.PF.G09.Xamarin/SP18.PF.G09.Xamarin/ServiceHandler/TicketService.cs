@@ -21,7 +21,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<List<Ticket>> GetAllTickets()
         {
-            var ticketList = await _restClient.GetAll<Ticket>(Constants.GetAllTickets);
+            var ticketList = await _restClient.GetAll<Ticket>(Constants.GetAllTicketsUrl);
             return ticketList;
         }
     }
