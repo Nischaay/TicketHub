@@ -1,4 +1,5 @@
 ﻿using SP18.PF.G09.Xamarin.Models;
+using SP18.PF.G09.Xamarin.Resources;
 using SP18.PF.G09.Xamarin.RestApi;
 using System;
 using System.Collections.Generic;
@@ -7,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
-    class GetToursService
+    public class ToursService
     {
         private readonly IRestClient _restClient;
-        public GetToursService()
+        public ToursService()
         {
             _restClient = new RestClient();
         }
 
-        public GetToursService(IRestClient restClient)
+        public ToursService(IRestClient restClient)
         {
             _restClient = restClient;
         }
 
-        public async Task<List<ToursModel>> getTour()
+        public async Task<List<ToursModel>> GetAllTours()
         {
-            var tourlist = await _restClient.GetAll<ToursModel>(Resources.GetAllTours);
+            var tourlist = await _restClient.GetAll<ToursModel>(Constants.GetAllTours);
             return tourlist;
         }
     }

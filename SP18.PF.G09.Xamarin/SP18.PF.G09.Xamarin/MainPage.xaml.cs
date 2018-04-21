@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SP18.PF.G09.Xamarin.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,9 @@ namespace SP18.PF.G09.Xamarin
 		public MainPage()
 		{
 			InitializeComponent();
-		}
-	}
+            Navigation.PushAsync(new TicketView());
+            //MainPage = new NavigationPage(new Login());
+
+        }
+    }
 }

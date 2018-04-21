@@ -1,9 +1,6 @@
-﻿using SP18.PF.Core.Features.Users;
-using SP18.PF.G09.Xamarin.Models;
+﻿using SP18.PF.G09.Xamarin.Models;
+using SP18.PF.G09.Xamarin.Resources;
 using SP18.PF.G09.Xamarin.RestApi;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
@@ -26,7 +23,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
         {
             if (ValidateUserRegistration(registerModel))
             {
-                var result = await _restClient.Post<UserRegisterModel>(Resources.RegisterUser, registerModel);
+                var result = await _restClient.Post<UserRegisterModel>(Constants.RegisterUser, registerModel);
                 return result;
             }
             return false;
