@@ -1,52 +1,56 @@
-﻿using SP18.PF.G09.Xamarin.ServiceHandler;
+﻿using SP18.PF.Core.Features.Shared;
+using SP18.PF.G09.Xamarin.Models;
+using SP18.PF.G09.Xamarin.ServiceHandler;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SP18.PF.G09.Xamarin.Views
 {
-	public partial class Registration : ContentPage
-	{
-		public Registration ()
-		{
-			InitializeComponent ();
-		}
+    public partial class Registration : ContentPage
+    {
+        public Registration()
+        {
+            InitializeComponent();
+        }
+
+
         private async void ButtonRegister_Clicked(object sender, EventArgs e)
         {
-            RegisterService services = new RegisterService();
-
-            if(password.Text == confirmpassword.Text)
+            RegisterService _registrationService = new RegisterService();
+            var registerModel = new UserRegisterModel
             {
-                var getRegistration = await services.Registration(email.Text, password.Text, addressLine1.Text, addressLine2.Text, zipCode.Text, city.Text, state.Text);
 
-                if (getRegistration)
+                Email = string.IsNullOrWhiteSpace(email.Text) ? "nischaayTest1@email.com" : email.Text,
+                Password = string.IsNullOrWhiteSpace(password.Text) ? "password" : password.Text,
+                ConfirmPassword = string.IsNullOrWhiteSpace(confirmpassword.Text) ? "password" : confirmpassword.Text,
+                BillingAddress = new Address
                 {
-                    await DisplayAlert("Register success", "You are login", "Okay", "Cancel");
+                    AddressLine1 = string.IsNullOrWhiteSpace(addressLine1.Text) ? "addressLine1" : addressLine1.Text,
+                    AddressLine2 = string.IsNullOrWhiteSpace(addressLine2.Text) ? "addressLine2" : addressLine2.Text,
+                    City = string.IsNullOrWhiteSpace(city.Text) ? "hammond" : city.Text,
+                    State = string.IsNullOrWhiteSpace(state.Text) ? "LA" : state.Text,
+                    ZipCode = string.IsNullOrWhiteSpace(zipCode.Text) ? "70401" : zipCode.Text
                 }
+            };
+
+            var getRegistration = await _registrationService.Registration(registerModel);
+
+            if (getRegistration)
+            {
+                await DisplayAlert("Register success", "Registration Successful. Please wait while we log you in.", "Okay", "Cancel");
+                var _loginService = new LoginService();
+                var loginResult = await _loginService.Login(registerModel);
+                
+                if (!loginResult)
+                    await DisplayAlert("Error!!", "Login unsuccessful. Please try again.", "Okay", "Cancel");
                 else
-                {
-                    await DisplayAlert("Registration unsuccessful", "Please try again.", "Okay", "Cancel");
-                }
+                    await DisplayAlert("Success!!", "Login successful", "Okay", "Cancel");
             }
             else
             {
-                await DisplayAlert("Password and confirm password does not match.", "Please try again", "okay", "Cancel");
+                await DisplayAlert("Error!!", "Registration unsuccessful. Please try again.", "Okay", "Cancel");
             }
-            //var getRegistration = await services.Registration(email.Text, password.Text, addressLine1.Text, addressLine2.Text, city.Text, state.Text, zipCode.Text);
-            //if (getRegistration)
-            //{
-            //    await DisplayAlert("Register success", "You are login", "Okay", "Cancel");
-            //}
-            //else
-            //{
-            //    await DisplayAlert("Login failed", "Username or Password is incorrect or not exists", "Okay", "Cancel");
-            //}
-
         }
     }
 }

@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using SP18.PF.Core.Features.Users;
-using SP18.PF.Core.Features.Venues;
+﻿using System.Threading.Tasks;
+using SP18.PF.G09.Xamarin.Models;
 using SP18.PF.G09.Xamarin.RestApi;
-using SP18.PF.G09.Xamarin.ServiceHandler;
+using SP18.PF.G09.Xamarin.Resources;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
     public class LoginService
     {
         private readonly IRestClient _restClient;
+        private readonly CookieService _cookieService;
 
         public LoginService()
         {
             _restClient = new RestClient();
+            _cookieService = new CookieService();
         }
 
         public LoginService(IRestClient restClient)
@@ -23,15 +21,21 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
             _restClient = restClient;
         }
 
-
-        public async Task<bool> CheckLoginIfExists(string email, string password)
+        public async Task<bool> Login(UserModel user)
         {
-            var loginModel = new User
+            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, user);
+            return result;
+        }
+
+        public async Task<bool> Login(UserRegisterModel registerModel)
+        {
+            var loginModel = new UserModel
             {
-                Email = email,
-                Password = password
+                Email = registerModel.Email,
+                Password = registerModel.Password,
+                RememberMe = false,
             };
-            var result = await _restClient.Post<User>(Resources.UserLogin, loginModel);
+            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, loginModel);
             return result;
         }
     }

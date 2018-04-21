@@ -1,28 +1,27 @@
 ﻿using SP18.PF.G09.Xamarin.RestApi;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using SP18.PF.Core.Features.Venues;
+using SP18.PF.G09.Xamarin.Models;
+using SP18.PF.G09.Xamarin.Resources;
 
 namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
-    public class GetVenues
+    public class VenuesService
     {
         private readonly IRestClient _restClient;
-        public GetVenues()
+        public VenuesService()
         {
             _restClient = new RestClient();
         }
 
-        public GetVenues(IRestClient restClient)
+        public VenuesService(IRestClient restClient)
         {
             _restClient = restClient;
         }
 
-        public async Task<List<Venue>> getVenues()
+        public async Task<List<VenueModel>> GetAllVenues()
         {
-            var listvenues = await _restClient.GetAll<Venue>(Resources.GetAllVenues);
+            var listvenues = await _restClient.GetAll<VenueModel>(Constants.GetAllVenuesUrl);
             return listvenues;
         }
     }

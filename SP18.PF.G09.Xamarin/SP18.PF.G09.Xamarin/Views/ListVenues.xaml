@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.ListVenues">
+    <!--<ListView x:Name="VenuesListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{x: name}" TextColor="Black"></Label>
+                        <Label Text="{x: description}" TextColor="Black"></Label>
+                        <Label Text="{x: capacity}" TextColor="Black"></Label>
+                        <Label Text="{x: PhysicalAddress"}{
+                        <Label Text="{x: addressLine1}" TextColor="Black"></Label>
+                        <Label Text="{x: addressLine2}" TextColor="Black"></Label>
+                        <Label Text="{x: zipCode}" TextColor="Black"></Label>
+                        <Label Text="{x: city}" TextColor="Black"></Label>
+                        <Label Text="{x: state}" TextColor="Black"></Label>
+                        }</Label>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+</ContentPage>
