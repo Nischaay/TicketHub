@@ -13,17 +13,68 @@ export class purchaseTicket extends Component {
         this.state = {
             event: [],
             loading: true,
-            url: window.location.href
+            url: window.location.href,
         };
         this.ticket = this.ticket.bind(this);
         this.verifyCard = this.verifyCard.bind(this);
+        this.valid_credit_card = this.valid_credit_card.bind(this);
         this.getTicket();
+        this.formSubmit = this.formSubmit.bind(this);
+        this.assignTicket = this.assignTicket.bind(this);
+    }
+
+    valid_credit_card(value) {
+        if (/[^0-9-\s]+/.test(value)) return false;
+
+        var nCheck = 0, nDigit = 0, bEven = false;
+        value = value.replace(/\D/g, "");
+
+        for (var n = value.length - 1; n >= 0; n--) {
+            var cDigit = value.charAt(n),
+                nDigit = parseInt(cDigit, 10);
+
+            if (bEven) {
+                if ((nDigit *= 2) > 9) nDigit -= 9;
+            }
+
+            nCheck += nDigit;
+            bEven = !bEven;
+        }
+
+        return (nCheck % 10) == 0;
     }
 
     ticket() {
         return this.state.url.split('/').slice(-1);
     }
 
+    formSubmit(e) {
+        e.preventDefault();
+        let messageBox = document.getElementById('notif');
+        if (document.getElementById('cardNo').value.length > 0 && this.valid_credit_card(document.getElementById('cardNo').value)) {
+            this.assignTicket();
+        } else {
+            messageBox.innerHTML = "<div class='alert alert-danger'> Invalid Card Information. Try Again!!</div>";
+        }
+    }
+
+    assignTicket() {
+        console.log(this.ticket());
+        fetch('api/tickets/purchase/' + this.ticket(), {
+            method: 'POST',
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                let messageBox = document.getElementById('notif');
+                if (data.id != null) {
+                    messageBox.innerHTML = "<div class='alert alert-success'> Ticket Purchased. Thank You!!</div>";
+                } else {
+                    messageBox.innerHTML = "<div class='alert alert-danger'> Invalid Card Information. Try Again!!</div>";
+                }
+            });
+    }
+ 
     verifyCard(e) {
         let num = e.target.value;
         let amex = document.getElementById('amex');
@@ -109,7 +160,6 @@ export class purchaseTicket extends Component {
                             </div>
                         </div>
                     </div>
-                )}
             </div>
         );
     }
@@ -127,33 +177,37 @@ export class purchaseTicket extends Component {
                 <div className="well col-md-offset-3 row col-md-5">
                     <div>
                         <div>
-                            <div className="form-group">
-                               <label htmlFor="name">Name on Card</label>
-                               <input type="name" className="form-control" id="name" placeholder="Cardholder's Name"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="cardNo">Card Number</label> &nbsp;
-                                <i id="discover" name="discover" style={large} className="fa fa-cc-discover fa-6" aria-hidden="true">&nbsp;</i>
-                                <i id="master" name="master" style={large} className="fa fa-cc-mastercard fa-6" aria-hidden="true">&nbsp;</i>
-                                <i id="visa" name="visa" style={large} className="fa fa-cc-visa fa-6" aria-hidden="true">&nbsp;</i>
-                                <i id="amex" name="amex" style={large} className="fa fa-cc-amex fa-6" aria-hidden="true">&nbsp;</i>
-                                <input onChange={this.verifyCard} name="cardNo" maxLength="16" className="form-control" id="cardNo" placeholder="XXXX XXXX XXXX XXXX" />
-                            </div>
-                            <div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="date">Expiration Date</label>
-                                    <input type="date" className="form-control" id="date" placeholder="MM/YY" />
+                            <form onSubmit={this.formSubmit}>
+                                <div id="notif"></div>
+                                <div className="form-group">
+                                    <label htmlFor="name">Name on Card</label>
+                                    <input type="name" className="form-control" id="name" placeholder="Cardholder's Name" />
                                 </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="code">CCV</label>
-                                    <input className="form-control" id="code" maxLength="4" placeholder="CCV" />
+                                <div className="form-group">
+                                    <label htmlFor="cardNo">Card Number</label> &nbsp;
+                                    <i id="discover" name="discover" style={large} className="fa fa-cc-discover fa-6" aria-hidden="true">&nbsp;</i>
+                                    <i id="master" name="master" style={large} className="fa fa-cc-mastercard fa-6" aria-hidden="true">&nbsp;</i>
+                                    <i id="visa" name="visa" style={large} className="fa fa-cc-visa fa-6" aria-hidden="true">&nbsp;</i>
+                                    <i id="amex" name="amex" style={large} className="fa fa-cc-amex fa-6" aria-hidden="true">&nbsp;</i>
+                                    <input onChange={this.verifyCard} name="cardNo" maxLength="16" className="form-control" id="cardNo" placeholder="XXXX XXXX XXXX XXXX" />
                                 </div>
-                            </div>
+                                <div>
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="date">Expiration Date</label>
+                                        <input type="date" className="form-control" id="date" placeholder="MM/YY" />
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="code">CCV</label>
+                                        <input className="form-control" id="code" maxLength="4" placeholder="CCV" />
+                                    </div>
+                                </div>
+                                <button type="submit" className="btn btn-success pull-right"> Buy this ticket for ${this.state.event.ticketPrice} </button>
+                            </form>
                         </div>
                         <div>
                         </div>
+                        </div>
                     </div>
-                </div>
             </div>
         );
 

@@ -29,14 +29,14 @@ export class Events extends Component {
 
     searchEvents(id) {
         if (!id) {
-            this.setState({ events: this.state.allEvents, loading: false });
+            this.setState({ events: this.state.events, loading: false });
         }
         else {
             fetch('api/events/' + id)
                 .then(response => response.json())
                 .then(data => {
                     console.log('search event', data);
-                    const searchedEvents = this.state.allEvents.filter(x => x.id == data.id);
+                    const searchedEvents = this.state.events.filter(x => x.id == data.id);
                     this.setState({ events: searchedEvents, loading: false });
                 });
         }
@@ -68,6 +68,7 @@ export class Events extends Component {
             </div>
         );
     }
+
 
     render() {
         let contents = this.state.loading
