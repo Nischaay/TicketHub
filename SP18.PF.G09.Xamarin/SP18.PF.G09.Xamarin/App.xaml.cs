@@ -13,16 +13,16 @@ namespace SP18.PF.G09.Xamarin
 		public App ()
 		{
 			InitializeComponent();
-            //MainPage = new SP18.PF.G09.Xamarin.MainPage();
+            MainPage = new NavigationPage(new Login());
             //MainPage = new SP18.PF.G09.Xamarin.Home();
-            MainPage = new TabbedPage
-            {
-                Children = {
-                    new MainPage(),
-                    new Login(),
-                    new Registration()
-                }
-            };
+            //MainPage = new TabbedPage
+            //{
+            //    Children = {
+            //        new MainPage(),
+            //        new Login(),
+            //        new Registration()
+            //    }
+            //};
         }
 
 		protected override void OnStart ()

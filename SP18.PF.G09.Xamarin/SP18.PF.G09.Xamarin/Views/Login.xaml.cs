@@ -25,19 +25,24 @@ namespace SP18.PF.G09.Xamarin.Views
             {
                 Email = string.IsNullOrEmpty(EntryEmail.Text) ? "admin@envoc.com" : EntryEmail.Text ,
                 Password = string.IsNullOrEmpty(EntryPassword.Text) ? "password" : EntryPassword.Text,
-                RememberMe = false
+                RememberMe = RememberMe.IsToggled
             };
             var getLoginDetails = await services.Login(user);
 
             if (getLoginDetails)
             {
                 await DisplayAlert("Login success", "You are login", "Okay", "Cancel");
-               // await Navigation.PushAsync(new Events());
+                await Navigation.PushAsync(new MainPage());
             }
             else
             {
                 await DisplayAlert("Login failed", "Username or Password is incorrect or not exists", "Okay", "Cancel");
             }
+        }
+
+        private async void ButtonRegister_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Registration());
         }
     }
 }
