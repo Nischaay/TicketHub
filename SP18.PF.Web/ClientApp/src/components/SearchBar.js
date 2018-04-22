@@ -25,17 +25,25 @@ export class SearchBar extends Component {
 
     renderSearchBar() {
         return (
-            <div>
-                <FormGroup controlId="searchValue">
+            
+            <FormGroup controlId="searchValue">
+                <div class="row">
+                    <div class="col-md-10">
                     <FormControl
                         value={this.state.searchValue}
                         type={this.props.type}
                         onChange={this.handleChange}
+                        placeholder={"Search.."}
+
                     />
-                    <button onClick={this.search}><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                   
+                        <button class="btn btn-primary" onClick={this.search}><i class="glyphicon glyphicon-search"></i></button>
+                  
+                </div>
                 </FormGroup>
 
-            </div>
+            
         );
     }
 

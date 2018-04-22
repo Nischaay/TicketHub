@@ -70,7 +70,7 @@ export class GetVenues extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <h1 class="fa fa-refresh fa-spin fa-lg"></h1>
             : GetVenues.renderVenuesTable(this.state.venues);
         return (
             <div>
