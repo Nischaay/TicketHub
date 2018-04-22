@@ -1,4 +1,6 @@
 ﻿
+using SP18.PF.G09.Xamarin.Resources;
+using SP18.PF.G09.Xamarin.ServiceHandler;
 using SP18.PF.G09.Xamarin.Views;
 using Xamarin.Forms;
 
@@ -8,18 +10,9 @@ namespace SP18.PF.G09.Xamarin
 	{
 		public App ()
 		{
-			InitializeComponent();
-            MainPage = new NavigationPage(new Login());
-            //MainPage = new SP18.PF.G09.Xamarin.Home();
-            //MainPage = new TabbedPage
-            //{
-            //    Children = {
-            //        new MainPage(),
-            //        new Login(),
-            //        new Registration(),
-            //        new ListTours()
-            //    }
-            //};
+            InitializeComponent();
+            MainPage = new NavigationPage( new Home());
+            //MainPage = new NavigationPage(new ListVenues());
         }
 
 		protected override void OnStart ()

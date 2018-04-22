@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP18.PF.G09.Xamarin.Android
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP18.PF.G09.Xamarin.iOS", "SP18.PF.G09.Xamarin\SP18.PF.G09.Xamarin.iOS\SP18.PF.G09.Xamarin.iOS.csproj", "{733F8E2A-CAE1-4049-8ED6-7CCBB7D96D9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP18.PF.G09.Xamarin", "SP18.PF.G09.Xamarin\SP18.PF.G09.Xamarin\SP18.PF.G09.Xamarin.csproj", "{613A32D5-AAA9-4777-B3C7-2A31CFC41E7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SP18.PF.G09.Xamarin", "SP18.PF.G09.Xamarin\SP18.PF.G09.Xamarin\SP18.PF.G09.Xamarin.csproj", "{613A32D5-AAA9-4777-B3C7-2A31CFC41E7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -23,7 +23,8 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<bool> Login(UserModel user)
         {
-            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, user);
+            var httpClient = _restClient.PrepareClient();
+            var result = await _restClient.Post<UserModel>(httpClient, Constants.UserLoginUrl, user);
             return result;
         }
 
@@ -35,7 +36,9 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
                 Password = registerModel.Password,
                 RememberMe = false,
             };
-            var result = await _restClient.Post<UserModel>(Constants.UserLoginUrl, loginModel);
+
+            var httpClient = _restClient.PrepareClient();
+            var result = await _restClient.Post<UserModel>(httpClient, Constants.UserLoginUrl, loginModel);
             return result;
         }
     }

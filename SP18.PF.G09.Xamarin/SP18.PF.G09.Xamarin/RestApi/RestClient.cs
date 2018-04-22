@@ -40,9 +40,8 @@ namespace SP18.PF.G09.Xamarin.RestApi
             return content;
         }
 
-        public async Task<bool> Post<T>(string url, T payload)
+        public async Task<bool> Post<T>(HttpClient client,string url, T payload)
         {
-            HttpClient client = PrepareClient();
             var content = PrepareContent(payload);
 
             try
@@ -56,9 +55,8 @@ namespace SP18.PF.G09.Xamarin.RestApi
             }
         }
 
-        public async Task<List<TEntity>> GetAll<TEntity>(string url)
+        public async Task<List<TEntity>> GetAll<TEntity>(HttpClient client,string url)
         {           
-            var client = PrepareClient();
             try
             {
                 var result = await client.GetAsync(url).ConfigureAwait(false);
@@ -71,24 +69,21 @@ namespace SP18.PF.G09.Xamarin.RestApi
             }
         }
 
-        public async Task<TEntity> GetOne<TEntity>(string url)
+        public async Task<TEntity> GetOne<TEntity>(HttpClient client,string url)
         {
-            var client = PrepareClient();
             var result = await client.GetAsync(url).ConfigureAwait(false);
             var responseObject = JsonConvert.DeserializeObject<TEntity>(await result.Content.ReadAsStringAsync());
             return responseObject;
         }
 
-        public async Task<bool> Delete<TEntity>(string url)
+        public async Task<bool> Delete<TEntity>(HttpClient client, string url)
         {
-            var client = PrepareClient();
             var result = await client.DeleteAsync(url).ConfigureAwait(false);
             return result.IsSuccessStatusCode;
         }
 
-        public async Task<bool> Update<T>(string url, T payload)
+        public async Task<bool> Update<T>(HttpClient client, string url, T payload)
         {
-            var client = PrepareClient();
             var content = PrepareContent(payload);
             var result = await client.PutAsync(url, content).ConfigureAwait(false);
             return result.IsSuccessStatusCode;

@@ -46,6 +46,7 @@ namespace SP18.PF.G09.Xamarin.Views
                     await DisplayAlert("Error!!", "Login unsuccessful. Please try again.", "Okay", "Cancel");
                 else
                     await DisplayAlert("Success!!", "Login successful", "Okay", "Cancel");
+                    await Navigation.PushAsync(new TicketView());
             }
             else
             {
