@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.Home"
+             BackgroundColor="Azure">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Label Text="Welcome to ShowPass"
+                   TextColor="Blue"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Login"
+                    TextColor="White"
+                    BackgroundColor="#22A7F0"
+                    x:Name="gotoLogin"
+                    Clicked="gotoLogin_Clicked"/>
+            <Button Text="Sign Up"
+                    TextColor="Black"
+                    BackgroundColor="Aqua"
+                    x:Name="gotoRegister"
+                    Clicked="gotoRegistern_Clicked"/>
+            <Button Text="Guess Access"
+                    TextColor="Red"
+                    BackgroundColor="AliceBlue"
+                    x:Name="gotoDashboard"
+                    Clicked="gotoDashboard_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
