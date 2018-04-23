@@ -42,26 +42,28 @@ export class GetTours extends Component {
     }
 
     static renderToursTable(tours) {
+        var images = [
+            "http://brunomars.us/wp-content/uploads/2015/01/Bruno-Mars-Concert-In-Lasvegas.jpg",
+            "https://bloximages.chicago2.vip.townnews.com/bozemandailychronicle.com/content/tncms/assets/v3/editorial/a/ba/abaa5f36-3af8-5c7f-8dd5-32bbf7d6e85e/5a8da55ba5870.image.jpg?resize=1200%2C797",
+            "https://vignette.wikia.nocookie.net/karlacamilacabello/images/4/43/Camila-cabello-performs-at-zedd-s-welcome-aclu-benefit-concert-4-3-2017-1.jpg/revision/latest?cb=20170407043551",
+            "https://s3.amazonaws.com/ssglobalcdn/performers/wide/taylor-swift.jpg"
+        ];
         return (
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th> Id </th>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {tours.map(tour =>
-                        <tr key={tour.id}>
-                            <td>{tour.id}</td>
-                            <td>{tour.name}</td>
-                            <td>{tour.description}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            <div>
+                {tours.map(tour =>
+                    <div key={tour.id} className="well col-md-offset-1 row col-md-3">
+                        <div>
+                            <div>
+                                <img height="250px" width="275px" src={images[tour.id-1]} />
+                                <h3> {tour.name} </h3>
+                                <p> {tour.description} </p>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         );
     }
 

@@ -13,7 +13,7 @@ export class NavMenu extends Component {
                 <Navbar inverse fixedTop fluid collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link to={'/'}>SP18.PF.Web</Link>
+                            <Link to={'/'}>Group 9</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
@@ -84,6 +84,12 @@ export class NavMenu extends Component {
                                 <Glyphicon glyph='th-list' /> Events
               </NavItem>
                         </LinkContainer>
+                        
+                        <LinkContainer to={'/gettours'}>
+                            <NavItem>
+                                <Glyphicon glyph='th-list' /> Tours
+              </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/login'}>
                             <NavItem>
                                 <Glyphicon glyph='log-in' /> Login
@@ -92,11 +98,6 @@ export class NavMenu extends Component {
                         <LinkContainer to={'/register'}>
                             <NavItem>
                                 <Glyphicon glyph='plus' /> Register
-              </NavItem>
-                        </LinkContainer>
-                        <LinkContainer to={'/gettours'}>
-                            <NavItem>
-                                <Glyphicon glyph='th-list' /> Tours
               </NavItem>
                         </LinkContainer>
                     </Nav>

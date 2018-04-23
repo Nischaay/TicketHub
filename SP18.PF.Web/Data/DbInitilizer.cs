@@ -55,10 +55,10 @@ namespace SP18.PF.Web.Data
             }
             var tours = dataContext.Set<Tour>().Select(x => x.Id).ToArray();
             var venues = dataContext.Set<Venue>().Select(x => x.Id).ToArray();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 var tour = tours[i];
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     var venue = venues[(i * 10 + j * 7) % venues.Length];
                     var start = DateTimeOffset.Now.AddDays(1 + i).AddHours(i);
@@ -78,30 +78,24 @@ namespace SP18.PF.Web.Data
         private static void SeedTours(DbContext dataContext)
         {
             var tours = dataContext.Set<Tour>();
-            string[] tourNames = {
-                "Bruno Mars",
-                "Imagine Dragon",
-                "Camila Cabello"
-            };
-            string[] tourDesc = {
-                "24k Magic",
-                "Thunder",
-                "Havana"
-                };
             if (tours.Any())
             {
                 return;
             }
-            for (int i = 0; i < 3; i++)
+            string[] tourNames = {
+                "Bruno Mars",
+                "Imagine Dragon",
+                "Camila Cabello",
+                "Taylor Swift",
+            };
+            string[] tourDesc = {
+                "24k Magic with our favourite pop king",
+                "Thunderous performence with the dragons you can't even imagine",
+                "Lets go on a tour to Havana with Camillia",
+                "Taylor Swift brings her reputation to New Orleans."
+                };
+            for (int i = 0; i < 4; i++)
             {
-
-                tours.Add(new Tour
-                {
-                    Name = "Taylor Swift Reputation Stadium Tour ",
-                    Description = "Taylor Swift brings her reputation to New Orleans."
-                });
-
-
                 tours.Add(new Tour
                 {
                     Name = tourNames[i],
@@ -118,20 +112,62 @@ namespace SP18.PF.Web.Data
             {
                 return;
             }
-            for (int i = 0; i < 5; i++)
+            string[] venueName =
+            {
+                "New York Stadium",
+                "Stamford Bridge",
+                "California Memorial Stadium",
+                "Mercedes Superdome"
+            };
+            string[] address =
+            {
+                "228 Park Ave S",
+                "27 Old Gloucester Street",
+                "1186 Roseville Pkwy Ave",
+                "1501 Dave Dixon Dr"
+            };
+            string[] city =
+            {
+                "Queens",
+                "Lindon City",
+                "San Fransico",
+                "New Orleans"
+            };
+            string[] state =
+            {
+                "NY",
+                "LO",
+                "CA",
+                "LA"
+            };
+            string[] zip =
+            {
+                "10001",
+                "14114",
+                "90001",
+                "40001"
+            };
+            string[] desc =
+            {
+                "Make your mark in New York and you are a made man",
+                "The capital of the british empire",
+                "Spend the summer with us in the california beaches at the west coast",
+                "Southern heat in Nawlins"
+            };
+            for (int i = 0; i < 4; i++)
             {
                 venues.Add(new Venue
                 {
-                    Name = $"venue{i}",
+                    Name = venueName[i],
                     PhysicalAddress = new Address
                     {
-                        AddressLine1 = "123 place St",
-                        City = "Hammond",
-                        State = "LA",
-                        ZipCode = "70403"
+                        AddressLine1 = address[i],
+                        City = city[i],
+                        State = state[i],
+                        ZipCode = zip[i]
                     },
-                    Capacity = 10 * i,
-                    Description = $"Venue Description {i}"
+                    Capacity = 10 * i + 100,
+                    Description = desc[i],
                 });
             }
             dataContext.SaveChanges();

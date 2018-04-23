@@ -46,7 +46,7 @@ export class Events extends Component {
         return (
             <div>
                 {allEvents.map(event =>
-                    <div key={event.id} className="well row col-md-12">
+                    <div key={event.id} className="well col-md-offset-1 row col-md-3">
                         <div>
                             <div>
                                 <h3> Tour: {event.tourName} </h3>
