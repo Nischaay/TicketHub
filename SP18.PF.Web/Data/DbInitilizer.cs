@@ -166,7 +166,7 @@ namespace SP18.PF.Web.Data
                         State = state[i],
                         ZipCode = zip[i]
                     },
-                    Capacity = 10 * i + 100,
+                    Capacity = 10 * i + 1380,
                     Description = desc[i],
                 });
             }

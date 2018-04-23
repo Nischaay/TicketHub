@@ -26,7 +26,7 @@ export class NavMenu extends Component {
                             </LinkContainer>
                             <LinkContainer to={'/getvenues'}>
                                 <NavItem>
-                                    <Glyphicon glyph='th-list' /> Venues
+                                    <Glyphicon glyph='map-marker' /> Venues
               </NavItem>
                             </LinkContainer>
                             <LinkContainer to={'/events'}>
@@ -36,7 +36,13 @@ export class NavMenu extends Component {
                             </LinkContainer>
                             <LinkContainer to={'/gettours'}>
                                 <NavItem>
-                                    <Glyphicon glyph='th-list' /> Tours
+                                    <Glyphicon glyph='globe' /> Tours
+              </NavItem>
+                            </LinkContainer>
+                           
+                            <LinkContainer to={'/UserTickets'}>
+                                <NavItem>
+                                    <Glyphicon glyph='tag' /> VIew My Tickets
               </NavItem>
                             </LinkContainer>
                             <LinkContainer to={'/logout'}>
@@ -44,16 +50,7 @@ export class NavMenu extends Component {
                                     <Glyphicon glyph='off' /> Logout
               </NavItem>
                             </LinkContainer>
-                            <LinkContainer to={'/UserTickets'}>
-                                <NavItem>
-                                    <Glyphicon glyph='th-list' /> VIew My Tickets
-              </NavItem>
-                            </LinkContainer>
-                            <LinkContainer to={'/UserTickets'}>
-                                <NavItem>
-                                    <Glyphicon glyph='th-list' /> Tickets
-              </NavItem>
-                            </LinkContainer>
+                            
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar >
@@ -63,7 +60,7 @@ export class NavMenu extends Component {
             <Navbar inverse fixedTop fluid collapseOnSelect >
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to={'/'}>SP18.PF.Web</Link>
+                        <Link to={'/'}>Group 9</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
@@ -76,7 +73,7 @@ export class NavMenu extends Component {
                         </LinkContainer>
                         <LinkContainer to={'/getvenues'}>
                             <NavItem>
-                                <Glyphicon glyph='th-list' /> Venues
+                                <Glyphicon glyph='map-marker' /> Venues
               </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/events'}>
@@ -87,7 +84,7 @@ export class NavMenu extends Component {
                         
                         <LinkContainer to={'/gettours'}>
                             <NavItem>
-                                <Glyphicon glyph='th-list' /> Tours
+                                <Glyphicon glyph='globe' /> Tours
               </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/login'}>
