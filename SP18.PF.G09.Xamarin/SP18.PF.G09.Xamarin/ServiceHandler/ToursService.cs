@@ -21,7 +21,8 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<List<ToursModel>> GetAllTours()
         {
-            var tourlist = await _restClient.GetAll<ToursModel>(Constants.GetAllToursUrl);
+            var httpClient = _restClient.PrepareClient(false);
+            var tourlist = await _restClient.GetAll<ToursModel>(httpClient,Constants.GetAllToursUrl);
             return tourlist;
         }
     }

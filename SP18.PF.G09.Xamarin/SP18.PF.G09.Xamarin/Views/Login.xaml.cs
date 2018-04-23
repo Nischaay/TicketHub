@@ -13,6 +13,8 @@ namespace SP18.PF.G09.Xamarin.Views
 		{
 			InitializeComponent ();
 		}
+
+
         private async void ButtonLogin_Clicked(object sender, EventArgs e)
         {
             LoginService services = new LoginService();
@@ -27,7 +29,7 @@ namespace SP18.PF.G09.Xamarin.Views
             if (getLoginDetails)
             {
                 await DisplayAlert("Login success", "You are login", "Okay", "Cancel");
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new Dashboard());
             }
             else
             {
@@ -35,9 +37,9 @@ namespace SP18.PF.G09.Xamarin.Views
             }
         }
 
-        private async void ButtonRegister_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Registration());
-        }
+        //private async void ButtonRegister_Clicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new Registration());
+        //}
     }
 }

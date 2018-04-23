@@ -21,9 +21,10 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 
         public async Task<bool> Registration(UserRegisterModel registerModel)
         {
+            var httpClient = _restClient.PrepareClient(false);
             if (ValidateUserRegistration(registerModel))
             {
-                var result = await _restClient.Post<UserRegisterModel>(Constants.RegisterUserUrl, registerModel);
+                var result = await _restClient.Post<UserRegisterModel>(httpClient,Constants.RegisterUserUrl, registerModel);
                 return result;
             }
             return false;

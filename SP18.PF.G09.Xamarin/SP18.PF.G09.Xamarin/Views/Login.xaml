@@ -35,11 +35,11 @@
                 x:Name="ButtonLogin"
                 Clicked="ButtonLogin_Clicked"/>
 
-                <Button Text="Sign Up"
+                <!--<Button Text="Sign Up"
                     TextColor="Green"
                     BackgroundColor="Azure"
                     x:Name="GoToRegistration"
-                    Clicked="ButtonRegister_Clicked"/>
+                    Clicked="ButtonRegister_Clicked"/>-->
 
             </StackLayout>
     </ScrollView>

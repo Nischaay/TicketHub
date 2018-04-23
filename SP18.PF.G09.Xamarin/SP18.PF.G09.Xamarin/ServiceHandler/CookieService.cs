@@ -8,7 +8,7 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
 {
     public class CookieService
     {
-        private readonly static CookieContainer _cookieContainer;
+        private static CookieContainer _cookieContainer;
 
         static CookieService()
         {
@@ -23,8 +23,27 @@ namespace SP18.PF.G09.Xamarin.ServiceHandler
         public Cookie GetCookie(string uri = Constants.WebServiceBaseUrl)
         {
             Uri cookieUri = new Uri(uri);
-            IEnumerable<Cookie> responseCookies = _cookieContainer.GetCookies(cookieUri).Cast<Cookie>();
-            return responseCookies.FirstOrDefault();
+            try
+            {
+                IEnumerable<Cookie> responseCookies = _cookieContainer.GetCookies(cookieUri)?.Cast<Cookie>();
+                return responseCookies?.FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public void ClearAllCookies()
+        {
+            _cookieContainer = new CookieContainer();
+        }
+
+        public void ClearCookie(string uri = Constants.WebServiceBaseUrl)
+        {
+            var webUri = new Uri(uri);
+            _cookieContainer.SetCookies(webUri, null);
         }
     }
 }
