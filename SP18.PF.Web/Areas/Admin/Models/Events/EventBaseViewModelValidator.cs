@@ -19,7 +19,7 @@ namespace SP18.PF.Web.Areas.Admin.Models.Events
                 .GreaterThan(0)
                 .LessThan(10000)
                 .Must(x => (int)(x * 100) == x * 100)
-                .WithMessage("Be in dollars and cents (no partial pennies)");
+                .WithMessage("Must be in dollars and cents (no partial pennies)");
 
             RuleFor(x => x.EventStart)
                 .NotNull()
@@ -37,7 +37,7 @@ namespace SP18.PF.Web.Areas.Admin.Models.Events
 
             RuleFor(x => x.TourId)
                 .MustAsync(TourMustNotOverlapOtherEvents)
-                .WithMessage("This Tour is playing at another venue during this time.");
+                .WithMessage("This tour is playing at another venue during this time.");
         }
 
         private async Task<bool> VenueMustNotOverlapOtherEvents(EventBaseViewModel viewModel, int venueId, CancellationToken token)
