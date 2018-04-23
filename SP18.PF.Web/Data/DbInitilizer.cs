@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SP18.PF.Core.Features.Events;
 using SP18.PF.Core.Features.Shared;
 using SP18.PF.Core.Features.Tickets;
@@ -9,6 +6,8 @@ using SP18.PF.Core.Features.Tours;
 using SP18.PF.Core.Features.Users;
 using SP18.PF.Core.Features.Venues;
 using SP18.PF.Web.Helpers;
+using System;
+using System.Linq;
 
 namespace SP18.PF.Web.Data
 {
@@ -56,7 +55,7 @@ namespace SP18.PF.Web.Data
             }
             var tours = dataContext.Set<Tour>().Select(x => x.Id).ToArray();
             var venues = dataContext.Set<Venue>().Select(x => x.Id).ToArray();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var tour = tours[i];
                 for (int j = 0; j < 10; j++)
@@ -79,16 +78,34 @@ namespace SP18.PF.Web.Data
         private static void SeedTours(DbContext dataContext)
         {
             var tours = dataContext.Set<Tour>();
+            string[] tourNames = {
+                "Bruno Mars",
+                "Imagine Dragon",
+                "Camila Cabello"
+            };
+            string[] tourDesc = {
+                "24k Magic",
+                "Thunder",
+                "Havana"
+                };
             if (tours.Any())
             {
                 return;
             }
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 3; i++)
             {
+
                 tours.Add(new Tour
                 {
-                    Name = $"tour{i}",
-                    Description = $"Tour Description {i}"
+                    Name = "Taylor Swift Reputation Stadium Tour ",
+                    Description = "Taylor Swift brings her reputation to New Orleans."
+                });
+
+
+                tours.Add(new Tour
+                {
+                    Name = tourNames[i],
+                    Description = tourDesc[i]
                 });
             }
             dataContext.SaveChanges();
@@ -101,7 +118,7 @@ namespace SP18.PF.Web.Data
             {
                 return;
             }
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 5; i++)
             {
                 venues.Add(new Venue
                 {
