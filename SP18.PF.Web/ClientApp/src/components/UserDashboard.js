@@ -6,7 +6,7 @@ export class UserDashboard extends Component {
     render() {
         return (
             <div>
-                <h1>Hello, User!</h1>
+                <h1>Howdy there, User!</h1>
                 </div>
         );
     }

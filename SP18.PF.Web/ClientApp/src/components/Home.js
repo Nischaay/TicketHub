@@ -6,7 +6,8 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to the one stop for all your concert Need!!!</h1>
+            <h1>Welcome to the one stop for all your concert needs!! We hope you conveniently 
+                find all the tickets you need to your favorite concerts!!</h1>
       </div>
     );
   }
