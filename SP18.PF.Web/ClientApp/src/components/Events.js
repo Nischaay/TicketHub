@@ -46,7 +46,7 @@ export class Events extends Component {
         return (
             <div>
                 {allEvents.map(event =>
-                    <div key={event.id} className="well col-md-offset-1 row col-md-3">
+                    <div key={event.id} className="well col-md-offset-1 row col-md-5">
                         <div>
                             <div>
                                 <h3> Tour: {event.tourName} </h3>
@@ -76,8 +76,9 @@ export class Events extends Component {
             : Events.getEventsTable(this.state.events);
         return (
             <div>
-                <SearchBar onSearch={this.searchEvents} type="number" />
+                
                 <h1>Events</h1>
+                <SearchBar onSearch={this.searchEvents} type="number" />
                 {contents}
             </div>
         );

@@ -8,5 +8,9 @@
 .well {
     background: linear-gradient(to right, #dc2424, #4a569d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: white;
-    min-height: 450px !important;
+    min-height: 400px ;
+}
+
+#card {
+    min-height: 40px !important;
 }

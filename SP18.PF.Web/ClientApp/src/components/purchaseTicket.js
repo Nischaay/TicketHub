@@ -1,6 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Redirect, Route } from 'react-router-dom';
+
 
 const large = {
     'fontSize': 'x-large',
@@ -14,6 +16,7 @@ export class purchaseTicket extends Component {
             event: [],
             loading: true,
             url: window.location.href,
+            redirect: false
         };
         this.ticket = this.ticket.bind(this);
         this.verifyCard = this.verifyCard.bind(this);
@@ -69,6 +72,9 @@ export class purchaseTicket extends Component {
                 let messageBox = document.getElementById('notif');
                 if (data.id != null) {
                     messageBox.innerHTML = "<div class='alert alert-success'> Ticket Purchased. Thank You!!</div>";
+                    setTimeout(function () {
+                        this.setState({ redirect: true });
+                    }.bind(this), 2000);
                 } else {
                     messageBox.innerHTML = "<div class='alert alert-danger'> Invalid Card Information. Try Again!!</div>";
                 }
@@ -145,7 +151,7 @@ export class purchaseTicket extends Component {
     static getTicket(ticket) {
         return (
             <div>
-                    <div className="well row col-md-12">
+                    <div className="well row col-md-12" id="card">
                         <div>
                         <div>
                                 <h4> Tour: {ticket.tourName} </h4>
@@ -165,6 +171,9 @@ export class purchaseTicket extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/UserTickets"/>
+        }
         let contents = this.state.loading
             ? <h1 className="fa fa-refresh fa-spin fa-lg"></h1>
             : purchaseTicket.getTicket(this.state.event);
@@ -174,7 +183,7 @@ export class purchaseTicket extends Component {
                 {contents}
                 <h1> Billing Info </h1>
                 <hr />
-                <div className="well col-md-offset-3 row col-md-5">
+                <div className="well col-md-offset-3 row col-md-5" id="card">
                     <div>
                         <div>
                             <form onSubmit={this.formSubmit}>
