@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.Login"
+             Title="Login">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="20"
+                         VerticalOptions="Center">
+                <Label Text="Email"
+               HorizontalOptions="Center"/>
+                <Entry Text=""
+               x:Name="EntryEmail"/>
+                <Label Text="Password"
+               HorizontalOptions="Center"/>
+                <Entry Text=""
+               x:Name="EntryPassword"
+               IsPassword="True"/>
+                <Label Text="Remember Me: "
+                   HorizontalOptions="Center"/>
+                <Switch 
+                x:Name="RememberMe"
+                    IsToggled="False"
+                   HorizontalOptions="Center"/>
+
+
+                <!--<SwitchCell
+                    Text="Remember Me?"
+                x:Name="rememeberME"
+                    On="False"/>-->
+
+                <Button Text="Login"
+                TextColor="White"
+                BackgroundColor="#22A7F0"
+                x:Name="ButtonLogin"
+                Clicked="ButtonLogin_Clicked"/>
+
+                <!--<Button Text="Sign Up"
+                    TextColor="Green"
+                    BackgroundColor="Azure"
+                    x:Name="GoToRegistration"
+                    Clicked="ButtonRegister_Clicked"/>-->
+
+            </StackLayout>
+    </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    

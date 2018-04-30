@@ -2,6 +2,7 @@
 import { SearchBar } from './SearchBar';
 import {Glyphicon} from 'react-bootstrap';
 
+
 export class GetVenues extends Component {
     displayName = GetVenues.name
 
@@ -43,34 +44,38 @@ export class GetVenues extends Component {
     }
 
     static renderVenuesTable(venues) {
+            var images = [
+            "http://3.bp.blogspot.com/-2NGV_Hq4Bxo/VcTJanCeQFI/AAAAAAAAGrs/X1sHq2vzeN0/s1600/NYPopsWideShot080615.JPG",
+            "https://cache-graphicslib.viator.com/graphicslib/thumbs674x446/6599/SITours/chelsea-football-match-at-stamford-bridge-stadium-in-london-162828.jpg",
+            "http://globalmedicalco.com/photos/globalmedicalco/4/19533.jpg",
+            "https://traveldigg.com/wp-content/uploads/2016/08/New-Orleans-Downtown-Skyline-720x404.jpg"
+        ];
         return (
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th> Id </th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Capacity</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {venues.map(venue =>
-                        <tr key={venue.id}>
-                            <td>{venue.id}</td>
-                            <td>{venue.name}</td>
-                            <td>{venue.description}</td>
-                            <td>{venue.capacity}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            <div>
+                {venues.map(tour =>
+                    <div key={tour.id} className="well col-md-offset-1 row col-md-3">
+                        <div>
+                            <div>
+                                <img height="250px" width="275px" src={images[tour.id - 1]} />
+                                <h3> {tour.name} </h3>
+                                <span className="badge">Capacity: {tour.capacity}</span>
+                                <hr />
+                                <p> Address: {tour.physicalAddress.addressLine1} </p>
+                                <p> City: {tour.physicalAddress.city}, {tour.physicalAddress.state},  {tour.physicalAddress.zipCode} </p>
+                                <p> {tour.description} </p>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         );
     }
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
+            ? <h1 class="fa fa-refresh fa-spin fa-lg"></h1>
             : GetVenues.renderVenuesTable(this.state.venues);
         return (
             <div>

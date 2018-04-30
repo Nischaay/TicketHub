@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.Registration"
+             Title="Register">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="10" Padding="10"
+                         VerticalOptions="Center">
+
+            <Label Text="Email"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="email"/>
+            <Label Text="Password"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="password"
+               IsPassword="True"/>
+            <Label Text="Confirm Password"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="confirmpassword"
+                   IsPassword="True"/>
+            <Label Text="Address Line1"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="addressLine1"/>
+            <Label Text="Address Line2"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="addressLine2"/>
+            <Label Text="City"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="city"/>
+            <Label Text="State"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="state"/>
+            <Label Text="Zip"
+               HorizontalOptions="Center"/>
+            <Entry Text=""
+               x:Name="zipCode"/>
+            <Button Text="Register"
+                TextColor="White"
+                BackgroundColor="#22A7F0"
+                x:Name="ButtonRegister"
+            Clicked="ButtonRegister_Clicked"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

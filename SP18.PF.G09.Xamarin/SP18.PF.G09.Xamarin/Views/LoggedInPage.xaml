@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SP18.PF.G09.Xamarin.Views.LoggedInPage"
+            xmlns:local="clr-namespace:SP18.PF.G09.Xamarin.Views"
+            Title="Hellow! Welcome to TicketShow">
+  <!--Pages can be added as references or inline-->
+    <TabbedPage.Children>
+        <local:ListTours/>
+        <local:TicketView/>
+    </TabbedPage.Children>
+</TabbedPage>
