@@ -17,7 +17,7 @@ namespace SP18.PF.Web.Areas.Admin.Models.Users
 
                 RuleFor(x => x.ConfirmPassword)
                     .Equal(x => x.Password)
-                    .WithMessage("'Password' and 'Confirm Password' must match.");
+                    .WithMessage("'Password' and 'Confirm Password' do not match. Both passwords must match.");
             });
 
             RuleFor(x => x.BillingAddress)

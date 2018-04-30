@@ -21,7 +21,7 @@ namespace SP18.PF.Web.Areas.Admin.Models.Tickets
                 .GreaterThan(0)
                 .LessThan(10000)
                 .Must(x => (int)(x * 100) == x * 100)
-                .WithMessage("Be in dollars and cents (no partial pennies)");
+                .WithMessage("Must be in dollars and cents (no partial pennies)");
 
             RuleFor(x => x.UserId)
                 .NotNull()

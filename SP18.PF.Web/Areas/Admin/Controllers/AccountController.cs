@@ -99,7 +99,7 @@ namespace SP18.PF.Web.Areas.Admin.Controllers
 
         private IActionResult DenyLogin(LoginViewModel vm)
         {
-            ModelState.AddModelError("Email", "No such user or incorrect password");
+            ModelState.AddModelError("Email", "No such user exists or incorrect password");
             return View(GetViewModel(vm));
         }
 
